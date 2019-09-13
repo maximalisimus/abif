@@ -31,11 +31,13 @@ Live CD/DVD/USB системы ArchLinux в псевдографическом �
 
 Для этого внесите правку в файл "abif-installation/modules/installation-functions.sh" в следующие строки:
 
-# Display Manager
+
+Display Manager
 
 arch_chroot "systemctl enable lightdm -f" 2>>/tmp/.errlog
 
 check_for_error
+
 
 Вместо "lightdm" соответственно ваш менеджер дисплея. 
 
