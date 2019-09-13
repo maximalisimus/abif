@@ -1,9 +1,9 @@
-﻿###########################################
-#                                         #
-#   abif-master script instalation        #
+﻿############################
+#                                                             #
+#   abif-master script instalation                #
 #   offline to Dialog mode on ArchLinux   #
-#                                         #
-###########################################
+#                                                             #
+############################
 
 Имя автора: maximalisimus
 E-Mail: maximalis171091@yandex.ru
@@ -31,7 +31,7 @@ Live CD/DVD/USB системы ArchLinux в псевдографическом �
 
 Для этого внесите правку в файл "abif-installation/modules/installation-functions.sh" в следующие строки:
 
-# Display Manager
+Display Manager
 
 arch_chroot "systemctl enable lightdm -f" 2>>/tmp/.errlog
 
@@ -52,7 +52,7 @@ P.S.: Обратите внимание!
 
 Перед добавлением данного мастера в ваш Live дистрибутив
 в файле "abif-installation/modules/installer-variables.sh" 
-имеются 2 необходимых настройки.
+имеется необходимая настройка.
 
 ISO_USER="liveuser" 
 
