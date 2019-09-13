@@ -1,9 +1,9 @@
-﻿############################
-#                                                             #
-#   abif-master script instalation                #
+###########################################
+#                                         #
+#   abif-master script instalation        #
 #   offline to Dialog mode on ArchLinux   #
-#                                                             #
-############################
+#                                         #
+###########################################
  
 Creation date: 13.09.2019
 
