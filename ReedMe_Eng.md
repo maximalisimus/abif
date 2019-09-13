@@ -4,7 +4,7 @@
 #   offline to Dialog mode on ArchLinux   #
 #                                                             #
 ############################
-
+ 
 Creation date: 13.09.2019
 
 Editor used: Notepad++
