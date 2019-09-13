@@ -1,4 +1,4 @@
-﻿###########################################
+###########################################
 #                                         #
 #   abif-master script instalation        #
 #   offline to Dialog mode on ArchLinux   #
@@ -49,7 +49,7 @@ P.S.: Pay attention!
 
 Before adding this wizard to your Live distribution
 in the file "abif-installation/modules/installer-variables.sh" 
-there are 2 required settings.
+there is a necessary setting.
 
 ISO_USER="liveuser" 
 
