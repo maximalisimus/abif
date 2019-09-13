@@ -28,7 +28,7 @@ Instead of LighDM, you can use any other one added to your Live distribution.
 
 To do this, make edits to the file "abif-installation/modules/installation-functions.sh" in the following lines:
 
-# Display Manager
+Display Manager
 
 arch_chroot "systemctl enable lightdm -f" 2>>/tmp/.errlog
 
