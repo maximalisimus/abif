@@ -35,6 +35,8 @@ install_root(){
   # copy over new mirrorlist
   cp /etc/pacman.d/mirrorlist ${MOUNTPOINT}/etc/pacman.d/mirrorlist 2>>/tmp/.errlog
   
+  sed -i 's/\# include \"\/usr\/share\/nano\/\*.nanorc\"/include \"\/usr\/share\/nano\/\*.nanorc\"/' ${MOUNTPOINT}/etc/nanorc 2>>/tmp/.errlog
+  
   # Clean up installation
   [[ -d ${MOUNTPOINT}/abif-installation ]] && rm -R ${MOUNTPOINT}/abif-installation 2>>/tmp/.errlog
   [[ -d ${MOUNTPOINT}/aif-installation ]] && rm -R ${MOUNTPOINT}/aif-installation 2>>/tmp/.errlog
