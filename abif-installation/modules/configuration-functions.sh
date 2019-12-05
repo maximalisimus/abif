@@ -1,4 +1,4 @@
-﻿#
+#!/bin/bash
 #
 #
 ######################################################################
@@ -413,7 +413,7 @@ create_new_user() {
        check_for_error
     else
        # If the live account has already been changed, create a new user account
-       arch_chroot "useradd ${USER} -m -g users -G wheel,storage,power,network,video,audio,lp,games,optical,scanner,floppy,log,rfkill,ftp,http,sys,input -s /bin/bash" 2>/tmp/.errlog   
+       arch_chroot "useradd ${USER} -m -g users -G wheel,storage,power,network,video,audio,lp,games,optical,scanner,floppy,log,rfkill,ftp,http,sys,input,disk -s /bin/bash" 2>/tmp/.errlog   
        arch_chroot "passwd ${USER}" < /tmp/.passwd >/dev/null 2>>/tmp/.errlog  
      
        # Set up basic configuration files and ownership for new account

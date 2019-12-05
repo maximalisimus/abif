@@ -1,5 +1,4 @@
-﻿#
-#
+#!/bin/bash
 #
 ######################################################################
 ##                                                                  ##
@@ -21,29 +20,29 @@ select_language() {
     "8" $"Magyar             (hu_HU)" 2>${ANSWER}
 
     case $(cat ${ANSWER}) in
-        "1") source $filesdir/lang/english.trans
+        "1") source "./lang/english.trans"
              CURR_LOCALE="en_US.UTF-8"
              ;;
-        "2") source $filesdir/lang/spanish.trans
+        "2") source "./lang/spanish.trans"
              CURR_LOCALE="es_ES.UTF-8"
              ;; 
-        "3") source $filesdir/lang/portuguese.trans
+        "3") source "./lang/portuguese.trans"
              CURR_LOCALE="pt_PT.UTF-8"
              ;;     
-        "4") source $filesdir/lang/french.trans
+        "4") source "./lang/french.trans"
              CURR_LOCALE="fr_FR.UTF-8"
              ;;  
-        "5") source $filesdir/lang/russian.trans
+        "5") source "./lang/russian.trans"
              CURR_LOCALE="ru_RU.UTF-8"
              FONT="LatKaCyrHeb-14.psfu"
              ;;
-        "6") source $filesdir/lang/italian.trans
+        "6") source "./lang/italian.trans"
              CURR_LOCALE="it_IT.UTF-8"
              ;;
-        "7") source $filesdir/lang/dutch.trans
+        "7") source "./lang/dutch.trans"
              CURR_LOCALE="nl_NL.UTF-8"
              ;;
-        "8") source $filesdir/lang/hungarian.trans
+        "8") source "./lang/hungarian.trans"
              CURR_LOCALE="hu_HU.UTF-8"
              FONT="lat2-16.psfu"
              ;;
