@@ -1,11 +1,101 @@
 #!/bin/bash
 #
-#
 ######################################################################
 ##                                                                  ##
 ##                    Installation Functions                        ##
 ##                                                                  ##
 ######################################################################  
+
+function detecting_service()
+{
+	dt_s=$(find /etc/ -type f -iname "$1*" | wc -l)
+	wait
+	echo ${dt_s[*]}
+}
+nm_manager_instllng()
+{
+	for j in ${_network_manager[*]}; do
+		if [[ $(detecting_service "$j") != "0" ]] && [[ $j != "${_network_manager[0]}" ]]; then
+			arch-chroot $MOUNTPOINT /bin/bash -c "systemctl enable $j.service" 2>>/tmp/.errlog
+			wait
+			check_for_error
+			wait
+			echo "systemctl enable $j.service"
+			if [[ $j == "${_network_manager[2]}" ]]; then
+				arch-chroot $MOUNTPOINT /bin/bash -c "systemctl enable $j-dispatcher.service" 2>>/tmp/.errlog
+				wait
+				check_for_error
+				wait
+				echo "systemctl enable $j-dispatcher.service"
+			fi
+			_nm_dt_instll=1
+			break
+		else
+			let _dt_nm_count+=1
+		fi
+	done
+	if [[ $_nm_dt_instll == "0" ]]; then
+		if [ "$_dt_nm_count" -ge "4" ]; then
+			arch-chroot $MOUNTPOINT /bin/bash -c "systemctl enable ${_network_manager[0]}.service" 2>>/tmp/.errlog
+			wait
+			check_for_error
+			wait
+			echo "systemctl enable ${_network_manager[0]}.service"
+		fi
+	fi
+	sleep 2
+}
+slm_instllng()
+{
+	# Amend the xinitrc file accordingly for all user accounts
+	user_list=$(ls ${MOUNTPOINT}/home/ | sed "s/lost+found//")
+	for k in ${user_list[@]}; do
+		if [[ -n ${MOUNTPOINT}/home/$k/.xinitrc ]]; then
+			cp -f ${MOUNTPOINT}/etc/X11/xinit/xinitrc ${MOUNTPOINT}/home/$k/.xinitrc
+			wait
+			arch-chroot $MOUNTPOINT /bin/bash -c "chown -R ${k}:users /home/${k}"
+			wait
+		fi
+		echo 'exec $1' >> ${MOUNTPOINT}/home/$k/.xinitrc
+	done
+}
+dm_manager_instllng()
+{
+	for j in ${_user_dm[*]}; do
+		if [[ $(detecting_service "$j") != "0" ]]; then
+			arch-chroot $MOUNTPOINT /bin/bash -c "systemctl enable $j.service" >/dev/null 2>>/tmp/.errlog
+			wait
+			check_for_error
+			wait
+			echo "systemctl enable $j.service"
+			case $j in
+				"${_user_dm[1]}") arch-chroot $MOUNTPOINT /bin/bash -c "systemctl enable $j -f" 2>>/tmp/.errlog
+								   wait
+								   check_for_error
+								   wait
+								   echo "systemctl enable $j -f"
+								;;
+				"${_user_dm[2]}") arch-chroot $MOUNTPOINT /bin/bash -c "$j --example-config > /etc/${_user_dm[2]}.conf" 2>>/tmp/.errlog
+								   wait
+								   check_for_error
+								   wait
+								   echo "$j --example-config > /etc/${_user_dm[2]}.conf"
+								;;
+				# "${_user_dm[3]}") # arch-chroot $MOUNTPOINT /bin/bash -c "$j --example-config > /etc/${_user_dm[3]}.conf" 2>>/tmp/.errlog
+								# wait
+								# check_for_error
+								# wait
+								# echo "$j --example-config > /etc/${_user_dm[3]}.conf"
+								# ;;
+				# "${_user_dm[4]}") slm_instllng
+								# wait
+								# ;;
+			esac
+			break
+		fi
+	done
+	sleep 2
+}
 
 install_root(){
 
@@ -26,9 +116,11 @@ install_root(){
   check_for_error
   
   # Keyboard config for vc and x11
-  # [[ -e /tmp/vconsole.conf ]] && cp /tmp/vconsole.conf ${MOUNTPOINT}/etc/vconsole.conf 2>>/tmp/.errlog
-  # [[ -e /tmp/01-keyboard-layout.conf ]] && cp -f /tmp/01-keyboard-layout.conf ${MOUNTPOINT}/etc/X11/xorg.conf.d/$(ls ${MOUNTPOINT}/etc/X11/xorg.conf.d/ | grep "keyboard") 2>>/tmp/.errlog
-  
+  # [[ -f /tmp/vconsole.conf ]] && cp /tmp/vconsole.conf ${MOUNTPOINT}/etc/vconsole.conf 2>>/tmp/.errlog
+  [[ -f /tmp/01-keyboard-layout.conf ]] && cp -f /tmp/01-keyboard-layout.conf ${MOUNTPOINT}/etc/X11/xorg.conf.d/00-keyboard.conf 2>>/tmp/.errlog
+  wait
+  [[ -f /tmp/01-keyboard-layout.conf ]] && sed -i 's/^HOOKS=(base/HOOKS=(base consolefont keymap /' ${MOUNTPOINT}/etc/mkinitcpio.conf
+
   # set up kernel for mkiniticpio
   cp /run/archiso/bootmnt/arch/boot/${ARCHI}/vmlinuz ${MOUNTPOINT}/boot/vmlinuz-linux 2>>/tmp/.errlog
 
@@ -38,14 +130,7 @@ install_root(){
   sed -i 's/\# include \"\/usr\/share\/nano\/\*.nanorc\"/include \"\/usr\/share\/nano\/\*.nanorc\"/' ${MOUNTPOINT}/etc/nanorc 2>>/tmp/.errlog
   
   # Clean up installation
-  [[ -d ${MOUNTPOINT}/abif-installation ]] && rm -R ${MOUNTPOINT}/abif-installation 2>>/tmp/.errlog
-  [[ -d ${MOUNTPOINT}/aif-installation ]] && rm -R ${MOUNTPOINT}/aif-installation 2>>/tmp/.errlog
-  [[ -d ${MOUNTPOINT}/archlinux-language ]] && rm -R ${MOUNTPOINT}/archlinux-language 2>>/tmp/.errlog
   rm -rf ${MOUNTPOINT}/vomi 2>>/tmp/.errlog
-  rm -f ${MOUNTPOINT}/home/$ISO_USER/Desktop/install.desktop 2>>/tmp/.errlog
-  rm -f ${MOUNTPOINT}/home/$ISO_USER/Desktop/install_offline.desktop 2>>/tmp/.errlog
-  rm -f ${MOUNTPOINT}/home/$ISO_USER/Desktop/install_online.desktop 2>>/tmp/.errlog
-  rm -f ${MOUNTPOINT}/home/$ISO_USER/Desktop/language_setup.desktop 2>>/tmp/.errlog
   rm -rf ${BYPASS} 2>>/tmp/.errlog
   rm -rf ${MOUNTPOINT}/source 2>>/tmp/.errlog
   rm -rf ${MOUNTPOINT}/src 2>>/tmp/.errlog
@@ -100,15 +185,25 @@ install_root(){
   arch_chroot "mkdir -p /var/lib/pacman/sync" 2>>/tmp/.errlog
   arch_chroot "touch /var/lib/pacman/sync/{core.db,extra.db,community.db}" 2>>/tmp/.errlog
 
-  # Fix NetworkManager
-  arch_chroot "systemctl enable NetworkManager -f" 2>>/tmp/.errlog
-
   # Keyboard config for vc and x11
   # [[ -e /tmp/vconsole.conf ]] && cp /tmp/vconsole.conf ${MOUNTPOINT}/etc/vconsole.conf 2>>/tmp/.errlog
-  [[ -e /tmp/01-keyboard-layout.conf ]] && cp -f /tmp/01-keyboard-layout.conf ${MOUNTPOINT}/etc/X11/xorg.conf.d/$(ls ${MOUNTPOINT}/etc/X11/xorg.conf.d/ | grep "keyboard") 2>>/tmp/.errlog
-  [[ -e /tmp/01-keyboard-layout.conf ]] && sed -i 's/^HOOKS=(base/HOOKS=(base consolefont keymap /' ${MOUNTPOINT}/etc/mkinitcpio.conf 2>>/tmp/.errlog
-  # Display Manager
-  arch_chroot "systemctl enable lightdm -f" 2>>/tmp/.errlog
+  if [[ -f /tmp/01-keyboard-layout.conf ]]; then
+	cp -f /tmp/01-keyboard-layout.conf ${MOUNTPOINT}/etc/X11/xorg.conf.d/00-keyboard.conf  2>>/tmp/.errlog
+	wait
+	ls ${MOUNTPOINT}/etc/X11/xorg.conf.d/
+	wait
+  	sed -i 's/^HOOKS=(base/HOOKS=(base consolefont keymap /' ${MOUNTPOINT}/etc/mkinitcpio.conf 2>>/tmp/.errlog
+	wait
+	cat ${MOUNTPOINT}/etc/mkinitcpio.conf | grep -Ei "HOOKS" | grep -Eiv "\#"
+	sleep 2
+  fi
+
+  # Network-Manager installing
+  nm_manager_instllng
+  
+  # Desktop-Manager installing
+  dm_manager_instllng
+  
   check_for_error
 }
 

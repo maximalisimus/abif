@@ -28,19 +28,19 @@ set_keymap() {
 # Set keymap for X11
  set_xkbmap() {
      
-    #XKBMAP_LIST=""
-    #keymaps_xkb=("af al am at az ba bd be bg br bt bw by ca cd ch cm cn cz de dk ee es et eu fi fo fr gb ge gh gn gr hr hu ie il in iq ir is it jp ke kg kh kr kz la lk lt lv ma md me mk ml mm mn mt mv ng nl no np pc ph pk pl pt ro rs ru se si sk sn sy tg th tj tm tr tw tz ua us uz vn za")
+    # XKBMAP_LIST=""
+    # keymaps_xkb=("af al am at az ba bd be bg br bt bw by ca cd ch cm cn cz de dk ee es et eu fi fo fr gb ge gh gn gr hr hu ie il in iq ir is it jp ke kg kh kr kz la lk lt lv ma md me mk ml mm mn mt mv ng nl no np pc ph pk pl pt ro rs ru se si sk sn sy tg th tj tm tr tw tz ua us uz vn za")
     
-    #for i in ${keymaps_xkb}; do
+    # for i in ${keymaps_xkb}; do
     #    XKBMAP_LIST="${XKBMAP_LIST} ${i} -"
-    #done
+    # done
     
-    #dialog --backtitle "$VERSION - $SYSTEM ($ARCHI)" --title " $_PrepKBLayout " --menu "$_XkbmapBody" 0 0 16 ${XKBMAP_LIST} 2>${ANSWER} || install_graphics_menu
-    #XKBMAP=$(cat ${ANSWER} |sed 's/_.*//')
-    #echo -e "Section "\"InputClass"\"\nIdentifier "\"system-keyboard"\"\nMatchIsKeyboard "\"on"\"\nOption "\"XkbLayout"\" "\"${XKBMAP}"\"\nEndSection" > /tmp/01-keyboard-layout.conf
+    # dialog --backtitle "$VERSION - $SYSTEM ($ARCHI)" --title " $_PrepKBLayout " --menu "$_XkbmapBody" 0 0 16 ${XKBMAP_LIST} 2>${ANSWER} || install_graphics_menu
+    # XKBMAP=$(cat ${ANSWER} |sed 's/_.*//')
+    # echo -e "Section "\"InputClass"\"\nIdentifier "\"system-keyboard"\"\nMatchIsKeyboard "\"on"\"\nOption "\"XkbLayout"\" "\"${XKBMAP}"\"\nEndSection" > /tmp/01-keyboard-layout.conf
  
-    #setxkbmap $XKBMAP 2>/tmp/.errlog
-    #check_for_error
+    # setxkbmap $XKBMAP 2>/tmp/.errlog
+    # check_for_error
     if [[ $_is_xkb -eq 0 ]]; then
       
         _switch_xkb=("grp:toggle" "grp:ctrl_shift_toggle" "grp:alt_shift_toggle" "grp:ctrl_alt_toggle" "grp:lwin_toggle" "grp:rwin_toggle" "grp:lctrl_toggle" "grp:rctrl_toggle")
@@ -128,7 +128,7 @@ set_keymap() {
             dialog --backtitle "$VERSION - $SYSTEM ($ARCHI)" --title "$_xkb_info_title" --msgbox "$_xkb_info_body" 0 0
             _skip=0
         fi
-        echo "# /etc/X11/xorg.conf.d/00-keyboard.conf " > /tmp/01-keyboard-layout.conf
+        echo "# /etc/X11/xorg.conf.d/01-keyboard.conf " > /tmp/01-keyboard-layout.conf
         echo "# Read and parsed by systemd-localed. It's probably wise not to edit this file" >> /tmp/01-keyboard-layout.conf
         echo -e -n "# manually too freely.\n" >> /tmp/01-keyboard-layout.conf
         echo -e -n "Section \"InputClass\"\n" >> /tmp/01-keyboard-layout.conf

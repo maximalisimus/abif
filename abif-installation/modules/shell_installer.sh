@@ -11,20 +11,33 @@
 select_install_shell()
 {
     # Select dialog shell
-    dialog --default-item ${HIGHLIGHT_SUB} --backtitle "$VERSION - $SYSTEM ($ARCHI)" --title "$_select_shell_menu_ttl" --menu "$_select_shell_menu_bd $1\n" 0 0 3 \
-    "1" $"BASH" \
-    "2" $"ZSH" \
-    "3" $"FISH" 2>${ANSWER}
+    if [[ "$shll_once" == "0" ]]; then
+        shll_once=1
+        for k in ${shll_list[*]}; do
+            case $k in
+                "${shll_list[0]}") [[ -f /bin/${shll_list[0]} ]] && shll_lst="${shll_lst} ${shll_list[0]}"
+                                ;;
+                "${shll_list[1]}") [[ -f /usr/bin/${shll_list[1]} ]] && shll_lst="${shll_lst} ${shll_list[1]}"
+                                ;;
+                "${shll_list[2]}") [[ -f /usr/bin/${shll_list[2]} ]] && shll_lst="${shll_lst} ${shll_list[2]}"
+                                ;;
+            esac
+        done
+        for k in ${shll_lst[*]}; do
+            shl_menu_select="${shl_menu_select} $k -"
+        done
+    fi
+    dialog --backtitle "$VERSION - $SYSTEM ($ARCHI)" --title "$_select_shell_menu_ttl" --menu "$_select_shell_menu_bd $1\n" 0 0 3 ${shl_menu_select}  2>${ANSWER}
     variable=($(cat ${ANSWER}))
     case $variable in 
-        "1") arch-chroot $MOUNTPOINT /bin/bash -c "chsh -s /bin/bash $1" 2>/tmp/.errlog
+        "${shll_list[0]}") arch-chroot $MOUNTPOINT /bin/bash -c "chsh -s /bin/${shll_list[0]} $1" 2>/tmp/.errlog
             ;;
-        "2") arch-chroot $MOUNTPOINT /bin/bash -c "chsh -s /usr/bin/zsh $1" 2>/tmp/.errlog
+        "${shll_list[1]}") arch-chroot $MOUNTPOINT /bin/bash -c "chsh -s /usr/bin/${shll_list[1]} $1" 2>/tmp/.errlog
             ;;
-        "3") arch-chroot $MOUNTPOINT /bin/bash -c "chsh -s /usr/bin/fish $1" 2>/tmp/.errlog
+        "${shll_list[2]}") arch-chroot $MOUNTPOINT /bin/bash -c "chsh -s /usr/bin/${shll_list[2]} $1" 2>/tmp/.errlog
             ;;
     esac
-    check_for_error
+    check_for_error    
 }
 shell_friendly_setup()
 {
@@ -45,7 +58,7 @@ shell_friendly_setup()
     fi
     # Checklist dialog user
     dialog --backtitle "$VERSION - $SYSTEM ($ARCHI)" --title "$_menu_ch_usr_ttl" --checklist "$_menu_ch_usr_bd" 0 0 16 ${_usr_lst_menu} 2>${ANSWER}
-    _ch_usr=$(cat ${ANSWER})
+    _ch_usr=($(cat ${ANSWER}))
 	if [[ ${_ch_usr[*]} != "" ]]; then
         for i in ${_ch_usr[*]}; do
             select_install_shell "$i"

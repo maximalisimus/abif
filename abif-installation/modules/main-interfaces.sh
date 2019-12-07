@@ -216,13 +216,13 @@ config_base_menu() {
             ;;
         "6") create_new_user
             ;;
-		 "7") shell_friendly_setup
+	"7") shell_friendly_setup
 			 ;;
         "8") security_menu
             ;;
-		 "9") swap_menu
+	"9") swap_menu
 			 ;;
-		 "10") rsrvd_menu
+	"10") rsrvd_menu
 			 ;;
           *) main_menu
             ;;
@@ -348,6 +348,27 @@ main_menu() {
           *) dialog --backtitle "$VERSION - $SYSTEM ($ARCHI)" --yesno "$_CloseInstBody" 0 0
           
              if [[ $? -eq 0 ]]; then
+		# Remove packages to installing-masters
+		arch_chroot "pacman -Rns abif-master --noconfirm 2>/dev/null" 2>/dev/null
+		arch_chroot "pacman -Rns aif-master --noconfirm 2>/dev/null" 2>/dev/null
+		arch_chroot "pacman -Rns archlinux-graphical --noconfirm 2>/dev/null" 2>/dev/null
+		arch_chroot "pacman -Rns archlinux-language --noconfirm 2>/dev/null" 2>/dev/null
+		
+		# Remove *.desktop icon on Desktop
+		find ${MOUNTPOINT}/ -type d -iname "abif*" -print0 | xargs -0 rm -rf
+		wait
+		find ${MOUNTPOINT}/ -type d -iname "aif*" -print0 | xargs -0 rm -rf
+		wait
+		find ${MOUNTPOINT}/ -type d -iname "archlinux-graphical*" -print0 | xargs -0 rm -rf
+		wait
+		find ${MOUNTPOINT}/ -type d -iname "archlinux-language*" -print0 | xargs -0 rm -rf
+		wait
+		_user_lists=$(ls ${MOUNTPOINT}/home/ | sed "s/lost+found//")
+		for k in ${_user_lists[*]}; do
+			find ${MOUNTPOINT}/home/$k/Desktop/ -type f -iname "*.desktop" -print0 | xargs -0 rm -rf
+			wait
+  		done
+		wait
                 umount_partitions
                 clear
                 exit 0

@@ -80,6 +80,10 @@ _bool_fish=0                        # fish once screenfetch config
 _bsh_stp_once=0                     # Once setup bash
 _zsh_stp_once=0                     # Once setup zsh
 _fsh_stp_once=0                     # Once setup fish
+shll_list=("bash" "zsh" "fish")
+shll_lst=""
+shll_once=0
+shl_menu_select=""
 
 # Variables of keyboard parameters
 _is_xkb=0
@@ -113,3 +117,9 @@ _mem_msg_file="/tmp/msginfo.nfo"                                 # Information o
 _File_of_Config="/tmp/00-sysctl.conf"                             # Temp configuration swappiness
 _real_dir_swpns="${MOUNTPOINT}/etc/sysctl.d/"                      # Real dir to swappiness on config
 _real_swappiness="${MOUNTPOINT}/etc/sysctl.d/00-sysctl.conf"         # File of full path swappiness config to install system
+
+# Network-Manager and Desktop-Manager for autoselect
+_network_manager=(dhcpcd connman NetworkManager wicd)
+_user_dm=(lxdm lightdm sddm gdm slim)
+_dt_nm_count=0
+_nm_dt_instll=0
