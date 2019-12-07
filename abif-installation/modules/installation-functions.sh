@@ -169,7 +169,7 @@ install_root(){
   rm -r ${MOUNTPOINT}/home/$ISO_USER/bash_root 2>>/tmp/.errlog
 
  # remove geany
- arch_chroot "pacman -Rns geany --noconfirm"
+ # arch_chroot "pacman -Rns geany --noconfirm"
  # arch_chroot "pacman -Rns xfce4-appfinder --noconfirm"
  
   # systemd
