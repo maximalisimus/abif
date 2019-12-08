@@ -187,12 +187,12 @@ install_root(){
 
   # Keyboard config for vc and x11
   # [[ -e /tmp/vconsole.conf ]] && cp /tmp/vconsole.conf ${MOUNTPOINT}/etc/vconsole.conf 2>>/tmp/.errlog
-  if [[ -f /tmp/01-keyboard-layout.conf ]]; then
+  if [[ -e /tmp/01-keyboard-layout.conf ]]; then
 	cp -f /tmp/01-keyboard-layout.conf ${MOUNTPOINT}/etc/X11/xorg.conf.d/00-keyboard.conf  2>>/tmp/.errlog
 	wait
 	ls ${MOUNTPOINT}/etc/X11/xorg.conf.d/
 	wait
-  	sed -i 's/^HOOKS=(base/HOOKS=(base consolefont keymap /' ${MOUNTPOINT}/etc/mkinitcpio.conf 2>>/tmp/.errlog
+  	sed -i "s/^HOOKS=(base/HOOKS=(base consolefont keymap /" ${MOUNTPOINT}/etc/mkinitcpio.conf 2>>/tmp/.errlog
 	wait
 	cat ${MOUNTPOINT}/etc/mkinitcpio.conf | grep -Ei "HOOKS" | grep -Eiv "\#"
 	sleep 2
