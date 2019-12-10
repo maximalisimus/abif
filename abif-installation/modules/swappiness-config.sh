@@ -30,59 +30,43 @@ setswappiness()
 }
 show_memory()
 {
-    echo -e -n "\n" > $_mem_file
-    count=0
-    for letter in "${_freefile[@]}"; do
-        if [ "$count" -le 5 ]; then
-            echo -e -n "\t$letter" >> $_mem_file
-        elif [ "$count" -eq 6 ]; then
-            echo -e -n "\n$letter" >> $_mem_file
-        elif [ "$count" -eq 10 ]; then
-            echo -e -n "\t  $letter" >> $_mem_file
-        elif [ "$count" -eq 11 ]; then
-            echo -e -n "\t     $letter" >> $_mem_file
-        elif [ "$count" -eq 12 ]; then
-            echo -e -n "\t    $letter" >> $_mem_file
-        elif [ "$count" -le 12 ]; then
-            echo -e -n "\t$letter" >> $_mem_file
-        elif [ "$count" -eq 13 ]; then
-            echo -e -n "\t\n$letter" >> $_mem_file
-        elif [ "$count" -le 19 ]; then
-            echo -e -n "\t$letter" >> $_mem_file
-        fi
-        let count+=1
-    done
+    echo -e -n "\n" > "$_mem_file"
+    _mem_head=$(free -h | awk 'NR==1{printf "\t%s\t%s\t%s\t%s\t\n", $1,$3,$2,$2}')
+    _memory=$(free -h | awk 'NR==2{printf "%s\t%s\t%s\t%s\t%.2f%%\n", $1,$2,$4,$3,$3*100/$2}')
+    _mem_2=$(free -h | awk 'NR==3{printf "%s\t%s\t%s\t%s\t%.2f%%\n", $1,$2,$4,$3,$3*100/$2}')
+    echo "$_mem_head" >> "$_mem_file"
+    echo "$_memory" >> "$_mem_file"
+    echo "$_mem_2" >> "$_mem_file"
 }
 swappiness_info()
 {
-    echo -e -n "\n$_sw_nfo1\n" > $_mem_msg_file
-    echo -e -n "$_sw_nfo2\n" >> $_mem_msg_file
-    echo -e -n "$_sw_nfo3\n" >> $_mem_msg_file
-    echo -e -n "$_sw_nfo4\n" >> $_mem_msg_file
-    echo -e -n "$_sw_nfo5\n" >> $_mem_msg_file
-    echo -e -n "$_sw_nfo6\n" >> $_mem_msg_file
-    echo -e -n "\n$_sw_nfo7\n" >> $_mem_msg_file
-    echo -e -n "\n$_sw_nfo8\n" >> $_mem_msg_file
+    echo -e -n "\n$_sw_nfo1\n" > "$_mem_msg_file"
+    echo -e -n "$_sw_nfo2\n" >> "$_mem_msg_file"
+    echo -e -n "$_sw_nfo3\n" >> "$_mem_msg_file"
+    echo -e -n "$_sw_nfo4\n" >> "$_mem_msg_file"
+    echo -e -n "$_sw_nfo5\n" >> "$_mem_msg_file"
+    echo -e -n "$_sw_nfo6\n" >> "$_mem_msg_file"
+    echo -e -n "\n$_sw_nfo7\n" >> "$_mem_msg_file"
+    echo -e -n "\n$_sw_nfo8\n" >> "$_mem_msg_file"
 }
 show_mem()
 {
-    _freefile=( $(free -h) )
-    IFS=$' '
     show_memory
     setswappiness
-    echo -e -n "\n\n$_swap_frequency_info\n" >> $_mem_file
-    echo -e -n "swappiness: $_swappiness\n" >> $_mem_file
+    echo -e -n "\n\n$_swap_frequency_info\n" >> "$_mem_file"
+    echo -e -n "swappiness: $_swappiness\n" >> "$_mem_file"
     swappiness_info
     dialog --backtitle "$VERSION - $SYSTEM ($ARCHI)" --title "$_msg_swps_title" --textbox $_mem_msg_file 0 0
-    dialog --backtitle "$VERSION - $SYSTEM ($ARCHI)" --title "$_free_info" --textbox $_mem_file 15 100
+    dialog --backtitle "$VERSION - $SYSTEM ($ARCHI)" --title "$_free_info" --textbox $_mem_file 20 100
 }
 free_mem()
 {
-    rm -rf $_mem_file
-    rm -rf $_mem_msg_file
-    rm -rf $_File_of_Config
-    unset freefile
-    unset IFS
+    rm -rf "$_mem_file"
+    rm -rf "$_mem_msg_file"
+    rm -rf "$_File_of_Config"
+    unset _mem_head
+    unset _memory
+    unset _mem_2
 }
 set_temp_swpns()
 {

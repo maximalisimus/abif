@@ -117,6 +117,9 @@ _mem_msg_file="/tmp/msginfo.nfo"                                 # Information o
 _File_of_Config="/tmp/00-sysctl.conf"                             # Temp configuration swappiness
 _real_dir_swpns="${MOUNTPOINT}/etc/sysctl.d/"                      # Real dir to swappiness on config
 _real_swappiness="${MOUNTPOINT}/etc/sysctl.d/00-sysctl.conf"         # File of full path swappiness config to install system
+_mem_head=""
+_memory=""
+_mem_2=""
 
 # Network-Manager and Desktop-Manager for autoselect
 _network_manager=(dhcpcd connman NetworkManager wicd)
