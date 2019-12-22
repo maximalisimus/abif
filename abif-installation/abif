@@ -12,6 +12,7 @@
 ABSOLUT_FILENAME=$(readlink -e "$0")
 filesdir=$(dirname "$ABSOLUT_FILENAME")
 
+source "$filesdir"/modules/dialogrc-conf.sh		                   # Color dialog configuration
 source "$filesdir"/modules/installer-variables.sh                  # list of variables
 source "$filesdir"/modules/dependences_function.sh				   # Dependences for script
 source "$filesdir"/modules/core-functions.sh                       # language, checks
@@ -38,6 +39,7 @@ if [[ $? != "0" ]]; then
 	script_dependences_question
 	dependences_result
 fi
+us_dlgrc_conf
 id_system
 select_language
 check_requirements

@@ -10,7 +10,7 @@
 # ISO Specific Variables
 ISO_HOST="maximalisimus"                            # ISO Host Name
 ISO_USER="liveuser"                                # Live user account
-VERSION="MAXIMALISIMUS Installation Framework 2.5"     # Installer Name / Version
+VERSION="MAXIMALISIMUS Installation Framework 2.6"     # Installer Name / Version
 TRANS_SRC="/abif-master"                            # Dir where translation files are stored
 
 # Create a temporary file to store menu selections
@@ -126,3 +126,17 @@ _network_manager=(dhcpcd connman NetworkManager wicd)
 _user_dm=(lxdm lightdm sddm gdm slim)
 _dt_nm_count=0
 _nm_dt_instll=0
+
+# Color dialog configured
+_dlgrc_hm_sts=0
+_dlgrc_rs_sts=0
+_dlgrc_rr_sts=0
+_dlgrc_hm_st="$HOME/.dialogrc"
+_dlgrc_rt_st="/etc/dialogrc"
+_dlgrc_rt_rt="/root/.dialogrc"
+_dlgrc_hm_bp="$filesdir/dlg-home.bp"
+_dlgrc_rt_st_bp="$filesdir/dlg-rt-st.bp"
+_dlg_rt_rt_bp="$filesdir/dlg-rt-rt.bp"
+_dlgrc_mp_etc="${MOUNTPOINT}/etc/dialogrc"
+_dlgrc_mp_rt="${MOUNTPOINT}/root/.dialogrc"
+_dlgrc_mp_hm_dr="${MOUNTPOINT}/home/"

@@ -348,28 +348,42 @@ main_menu() {
           *) dialog --backtitle "$VERSION - $SYSTEM ($ARCHI)" --yesno "$_CloseInstBody" 0 0
           
              if [[ $? -eq 0 ]]; then
-		# Remove packages to installing-masters
-		arch_chroot "pacman -Rns abif-master --noconfirm 2>/dev/null" 2>/dev/null
-		arch_chroot "pacman -Rns aif-master --noconfirm 2>/dev/null" 2>/dev/null
-		arch_chroot "pacman -Rns archlinux-graphical --noconfirm 2>/dev/null" 2>/dev/null
-		arch_chroot "pacman -Rns archlinux-language --noconfirm 2>/dev/null" 2>/dev/null
-		
-		# Remove *.desktop icon on Desktop
-		find ${MOUNTPOINT}/ -type d -iname "abif*" -print0 | xargs -0 rm -rf
-		wait
-		find ${MOUNTPOINT}/ -type d -iname "aif*" -print0 | xargs -0 rm -rf
-		wait
-		find ${MOUNTPOINT}/ -type d -iname "archlinux-graphical*" -print0 | xargs -0 rm -rf
-		wait
-		find ${MOUNTPOINT}/ -type d -iname "archlinux-language*" -print0 | xargs -0 rm -rf
-		wait
-		_user_lists=$(ls ${MOUNTPOINT}/home/ | sed "s/lost+found//")
-		for k in ${_user_lists[*]}; do
-			find ${MOUNTPOINT}/home/$k/Desktop/ -type f -iname "*.desktop" -print0 | xargs -0 rm -rf
-			wait
-  		done
-		wait
+                echo -n  -e "\e[1;31mPlease wait ...\e[0m"\\r
+                # Remove packages to installing-masters
+                arch_chroot "pacman -Rns abif-master --noconfirm 2>/dev/null" 2>/dev/null
+                wait
+                echo -n  -e "\e[1;32mPlease wait ...\e[0m"\\r
+                arch_chroot "pacman -Rns aif-master --noconfirm 2>/dev/null" 2>/dev/null
+                wait
+                echo -n  -e "\e[1;31mPlease wait ...\e[0m"\\r
+                arch_chroot "pacman -Rns archlinux-graphical --noconfirm 2>/dev/null" 2>/dev/null
+                wait
+                echo -n  -e "\e[1;32mPlease wait ...\e[0m"\\r
+                arch_chroot "pacman -Rns archlinux-language --noconfirm 2>/dev/null" 2>/dev/null
+                wait
+                echo -n  -e "\e[1;31mPlease wait ...\e[0m"\\r
+                # Remove *.desktop icon on Desktop
+                find ${MOUNTPOINT}/ -type d -iname "abif*" -print0 | xargs -0 rm -rf
+                wait
+                echo -n  -e "\e[1;32mPlease wait ...\e[0m"\\r
+                find ${MOUNTPOINT}/ -type d -iname "aif*" -print0 | xargs -0 rm -rf
+                wait
+                echo -n  -e "\e[1;31mPlease wait ...\e[0m"\\r
+                find ${MOUNTPOINT}/ -type d -iname "archlinux-graphical*" -print0 | xargs -0 rm -rf
+                wait
+                echo -n  -e "\e[1;32mPlease wait ...\e[0m"\\r
+                find ${MOUNTPOINT}/ -type d -iname "archlinux-language*" -print0 | xargs -0 rm -rf
+                wait
+                echo -n  -e "\e[1;31mPlease wait ...\e[0m"\\r
+                _user_lists=$(ls ${MOUNTPOINT}/home/ | sed "s/lost+found//")
+                for k in ${_user_lists[*]}; do
+                    find ${MOUNTPOINT}/home/$k/Desktop/ -type f -iname "*.desktop" -print0 | xargs -0 rm -rf
+                    wait
+                done
+                echo -n  -e "\e[1;32mPlease wait ...\e[0m"\\r
+                wait
                 umount_partitions
+                un_us_dlgrc_conf
                 clear
                 exit 0
              else

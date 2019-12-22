@@ -102,7 +102,7 @@ install_root(){
   clear
 
   # Change installation method depending on use of img or sfs
-  if [[ -e /run/archiso/sfs/airootfs/airootfs.img ]]; then
+  if [ -e "/run/archiso/sfs/airootfs/airootfs.img" ]; then
      AIROOTIMG="/run/archiso/sfs/airootfs/airootfs.img"
      mkdir -p ${BYPASS} 2>/tmp/.errlog
      mount ${AIROOTIMG} ${BYPASS} 2>>/tmp/.errlog
@@ -117,17 +117,17 @@ install_root(){
   
   # Keyboard config for vc and x11
   # [[ -f /tmp/vconsole.conf ]] && cp /tmp/vconsole.conf ${MOUNTPOINT}/etc/vconsole.conf 2>>/tmp/.errlog
-  [[ -f /tmp/01-keyboard-layout.conf ]] && cp -f /tmp/01-keyboard-layout.conf ${MOUNTPOINT}/etc/X11/xorg.conf.d/00-keyboard.conf 2>>/tmp/.errlog
+  [ -f "/tmp/01-keyboard-layout.conf" ] && cp -f "/tmp/01-keyboard-layout.conf" "${MOUNTPOINT}/etc/X11/xorg.conf.d/00-keyboard.conf" 2>>/tmp/.errlog
   wait
-  [[ -f /tmp/01-keyboard-layout.conf ]] && sed -i 's/^HOOKS=(base/HOOKS=(base consolefont keymap /' ${MOUNTPOINT}/etc/mkinitcpio.conf
+  [ -f "/tmp/01-keyboard-layout.conf" ] && sed -i 's/^HOOKS=(base/HOOKS=(base consolefont keymap /' "${MOUNTPOINT}/etc/mkinitcpio.conf"
 
   # set up kernel for mkiniticpio
-  cp /run/archiso/bootmnt/arch/boot/${ARCHI}/vmlinuz ${MOUNTPOINT}/boot/vmlinuz-linux 2>>/tmp/.errlog
+  cp "/run/archiso/bootmnt/arch/boot/${ARCHI}/vmlinuz" "${MOUNTPOINT}/boot/vmlinuz-linux" 2>>/tmp/.errlog
 
   # copy over new mirrorlist
-  cp /etc/pacman.d/mirrorlist ${MOUNTPOINT}/etc/pacman.d/mirrorlist 2>>/tmp/.errlog
+  cp "/etc/pacman.d/mirrorlist" "${MOUNTPOINT}/etc/pacman.d/mirrorlist" 2>>/tmp/.errlog
   
-  sed -i 's/\# include \"\/usr\/share\/nano\/\*.nanorc\"/include \"\/usr\/share\/nano\/\*.nanorc\"/' ${MOUNTPOINT}/etc/nanorc 2>>/tmp/.errlog
+  sed -i 's/\# include \"\/usr\/share\/nano\/\*.nanorc\"/include \"\/usr\/share\/nano\/\*.nanorc\"/' "${MOUNTPOINT}/etc/nanorc" 2>>/tmp/.errlog
   
   # Clean up installation
   rm -rf ${MOUNTPOINT}/vomi 2>>/tmp/.errlog
@@ -143,7 +143,7 @@ install_root(){
   sed -i 's/.*pam_wheel\.so/#&/' ${MOUNTPOINT}/etc/pam.d/su 2>>/tmp/.errlog
  
   # clean out archiso files from install
-  find ${MOUNTPOINT}/usr/lib/initcpio -name archiso* -type f -exec rm '{}' \;
+  find "${MOUNTPOINT}/usr/lib/initcpio" -type f -name "archiso*" -exec rm '{}' \;
 
   # root files
   mv /etc/skel/bash_root ${MOUNTPOINT}/root/.bashrc 2>>/tmp/.errlog
@@ -187,14 +187,14 @@ install_root(){
 
   # Keyboard config for vc and x11
   # [[ -e /tmp/vconsole.conf ]] && cp /tmp/vconsole.conf ${MOUNTPOINT}/etc/vconsole.conf 2>>/tmp/.errlog
-  if [[ -e /tmp/01-keyboard-layout.conf ]]; then
-	cp -f /tmp/01-keyboard-layout.conf ${MOUNTPOINT}/etc/X11/xorg.conf.d/00-keyboard.conf  2>>/tmp/.errlog
+  if [ -e "/tmp/01-keyboard-layout.conf" ]; then
+	cp -f "/tmp/01-keyboard-layout.conf" "${MOUNTPOINT}/etc/X11/xorg.conf.d/00-keyboard.conf"  2>>/tmp/.errlog
 	wait
-	ls ${MOUNTPOINT}/etc/X11/xorg.conf.d/
+	ls "${MOUNTPOINT}/etc/X11/xorg.conf.d/"
 	wait
-  	sed -i "s/^HOOKS=(base/HOOKS=(base consolefont keymap /" ${MOUNTPOINT}/etc/mkinitcpio.conf 2>>/tmp/.errlog
+  	sed -i "s/^HOOKS=(base/HOOKS=(base consolefont keymap /" "${MOUNTPOINT}/etc/mkinitcpio.conf" 2>>/tmp/.errlog
 	wait
-	cat ${MOUNTPOINT}/etc/mkinitcpio.conf | grep -Ei "HOOKS" | grep -Eiv "\#"
+	cat "${MOUNTPOINT}/etc/mkinitcpio.conf" | grep -Ei "HOOKS" | grep -Eiv "\#"
 	sleep 2
   fi
 
