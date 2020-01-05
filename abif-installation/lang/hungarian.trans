@@ -8,7 +8,7 @@
 ## Fordító : Istju
 
 # Általános
-_UseSpaceBar="Használd a [szóköz] billentyűt a felsorolt lehetőségek kijelöléséhez, illetve a kijelölés megszüntetéséhez."
+_UseSpaceBar="Használd a [szóköz] billentyűt a felsorolt lehetőségek kijelöléséhez, illetve a kijelölés megszüntetéséhez."                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
 _AlreadyInst="Már telepítve van, de nincs engedélyezve."
 _All="Összes"
 _Done="Kész"
@@ -478,50 +478,3 @@ _scrn_strp_ttl="Screenfetch beállítása Üdvözöljük"
 _scrn_strp_bd="\nScreenfetch üdvözlés hozzáadása indításkor?\n"
 _menu_ch_usr_ttl="Felhasználói kiválasztás"
 _menu_ch_usr_bd="\nKérjük, válassza ki a felhasználókat, akiknek módosítani szeretné a SHELL\n"
-
-#
-# User groups
-_ug_select_ttl="A felhasználó csoportjainak kiválasztása"
-ug_select_bd="\nVálassza ki azokat a csoportokat, amelyekbe új felhasználót kíván felvenni\n"
-#
-# User Groups for user
-#
-_ugd_adm="Admin"
-_ugd_ftp="Hozzáférés az FTP-fájlokhoz"
-_ugd_games="Hozzáférés a játékprogramokhoz"
-_ugd_http="HTTP-fájlok elérése"
-_ugd_log="Hozzáférés a naplófájlokhoz, syslog-ng"
-_ugd_rfkill="Energiagazdálkodás vezeték nélküli eszközökhöz"
-_ugd_sys="CUPS nyomtatók kezelése"
-_ugd_systemd_journal="Hozzáférés a systemd naplókhoz"
-_ugd_users="Standard felhasználói csoport"
-_ugd_uucp="Hozzáférés az RS-232 eszközökhöz"
-_ugd_wheel="Alkalmazás via sudo és su"
-#
-# User Groups for system
-#
-_ugd_dbus="Belső DBU-k használata"
-_ugd_kmem="-"
-_ugd_locate="-"
-_ugd_lp="A párhuzamos portokhoz való hozzáférés"
-_ugd_mail="-"
-_ugd_nobody="Nem kiváltságos csoport."
-_ugd_proc="A folyamatokkal kapcsolatos információkhoz való hozzáférés"
-_ugd_smmsp="sendmail-csoport"
-_ugd_tty="-"
-_ugd_utmp="-"
-#
-# User Groups for Pre-Systemd
-#
-_ugd_audio="Közvetlen hozzáférés az audioberendezésekhez"
-_ugd_disk="Hozzáférés blokkoló eszközökhöz"
-_ugd_floppy="Hozzáférés a hajlékonylemezekhez"
-_ugd_input="Hozzáférés a beviteli eszközökhöz"
-_ugd_kvm="KVM virtuális gépekhez való hozzáférés"
-_ugd_optical="Hozzáférés CD-hez, DVD-hez, ISO-hoz"
-_ugd_scanner="Hozzáférés a szkennerekhez"
-_ugd_storage="Hozzáférés cserélhető lemezekhez"
-_ugd_video="Hozzáférés a videó rögzítő eszközökhöz"
-#
-#
-
