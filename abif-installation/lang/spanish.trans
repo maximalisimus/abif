@@ -474,3 +474,49 @@ _select_shell_menu_ttl="Selección de SHELL para la instalación"
 _select_shell_menu_bd="\nPor favor, elija SHELL PARA el usuario"
 _menu_ch_usr_ttl="Selección de usuarios"
 _menu_ch_usr_bd="\nPor favor, seleccione los usuarios para los que desea cambiar SHELL\n"
+
+#
+# User groups
+_ug_select_ttl="Seleccionar grupos de usuarios"
+ug_select_bd="\nSeleccione los grupos a los que desea agregar un nuevo usuario\n"
+#
+# User Groups for user
+#
+_ugd_adm="Administración"
+_ugd_ftp="Acceso a archivos FTP"
+_ugd_games="Acceso a los programas de juego"
+_ugd_http="Acceso a archivos HTTP"
+_ugd_log="Acceso a archivos de registro, syslog-ng"
+_ugd_rfkill="Administración de energía de dispositivos inalámbricos"
+_ugd_sys="Administración de impresoras CUPS"
+_ugd_systemd_journal="Acceso a los registros de systemd"
+_ugd_users="Grupo de usuarios estándar"
+_ugd_uucp="Acceso a dispositivos RS-232"
+_ugd_wheel="Administración a través de sudo y su"
+#
+# User Groups for system
+#
+_ugd_dbus="Utilizado dentro de dbus"
+_ugd_kmem="-"
+_ugd_locate="-"
+_ugd_lp="Acceso a dispositivos de puerto paralelo"
+_ugd_mail="-"
+_ugd_nobody="Grupo no privilegiado"
+_ugd_proc="Acceso a la información del proceso"
+_ugd_smmsp="sendmail grupo"
+_ugd_tty="-"
+_ugd_utmp="-"
+#
+# User Groups for Pre-Systemd
+#
+_ugd_audio="Acceso directo al equipo de sonido"
+_ugd_disk="Acceso a dispositivos de bloque"
+_ugd_floppy="Acceso a disquetes"
+_ugd_input="Acceso a dispositivos de entrada"
+_ugd_kvm="Acceso a máquinas virtuales KVM"
+_ugd_optical="Acceso a CD, DVD, ISO"
+_ugd_scanner="Acceso a los escáneres"
+_ugd_storage="Acceso a discos extraíbles"
+_ugd_video="Acceso a dispositivos de captura de vídeo"
+#
+#

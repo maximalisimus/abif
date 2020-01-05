@@ -12,9 +12,9 @@
 ABSOLUT_FILENAME=$(readlink -e "$0")
 filesdir=$(dirname "$ABSOLUT_FILENAME")
 
-source "$filesdir"/modules/dialogrc-conf.sh		           # Color dialog configuration
+source "$filesdir"/modules/dialogrc-conf.sh		           		   # Color dialog configuration
 source "$filesdir"/modules/installer-variables.sh                  # list of variables
-source "$filesdir"/modules/dependences_function.sh		   # Dependences for script
+source "$filesdir"/modules/dependences_function.sh		           # Dependences for script
 source "$filesdir"/modules/core-functions.sh                       # language, checks
 source "$filesdir"/modules/configuration-functions.sh              # Keyboard, locale, time zone, FSTAB, mkinitcpio, user controls
 source "$filesdir"/modules/system-partitioning.sh                  # managing partitions, installing the boot
@@ -34,7 +34,7 @@ source "$filesdir"/modules/main-interfaces.sh                      # main menu i
 ######################################################################
 
 setcolor
-dialog 1>/dev/null 2>/dev/null
+/bin/bash -c "dialog --version" 1>/dev/null 2>/dev/null
 if [[ $? != "0" ]]; then
 	script_dependences_question
 	dependences_result

@@ -479,3 +479,49 @@ _scrn_strp_bd="\nДобавить screenfetch приветствие в авто
 _menu_ch_usr_ttl="Выбор пользователей"
 _menu_ch_usr_bd="\nПожалуйста выберите пользователей, для которых необходимо изменить SHELL\n"
 
+#
+# User groups
+_ug_select_ttl="Выбор групп пользователя"
+ug_select_bd="\nПожалуйста, выберите группы в которые необходимо добавить нового пользователя\n"
+#
+# User Groups for user
+#
+_ugd_adm="Администрирование"
+_ugd_ftp="Доступ к файлам FTP"
+_ugd_games="Доступ к игровым программам"
+_ugd_http="Доступ к файлам HTTP"
+_ugd_log="Доступ к лог-файлам, syslog-ng"
+_ugd_rfkill="Управление питанием беспроводных устройств"
+_ugd_sys="Администрирование принтеров CUPS"
+_ugd_systemd_journal="Доступ к журналам systemd"
+_ugd_users="Стандартная группа пользователей"
+_ugd_uucp="Доступ к устройствам RS-232"
+_ugd_wheel="Администрирование через sudo и su"
+#
+# User Groups for system
+#
+_ugd_dbus="Используется внутри dbus"
+_ugd_kmem="-"
+_ugd_locate="-"
+_ugd_lp="Доступ к устройствам параллельного порта"
+_ugd_mail="-"
+_ugd_nobody="Непривилигированная группа"
+_ugd_proc="Доступ к информации о процессах"
+_ugd_smmsp="sendmail группа"
+_ugd_tty="-"
+_ugd_utmp="-"
+#
+# User Groups for Pre-Systemd
+#
+_ugd_audio="Прямой доступ к звуковому оборудованию"
+_ugd_disk="Доступ к блочным устройствам"
+_ugd_floppy="Доступ к флоппи-дискам"
+_ugd_input="Доступ к устройствам ввода"
+_ugd_kvm="Доступ к виртуальным машинам KVM"
+_ugd_optical="Доступ к CD, DVD, ISO"
+_ugd_scanner="Доступ к сканерам"
+_ugd_storage="Доступ к съемным дискам"
+_ugd_video="Доступ к устройствам захвата видео"
+#
+#
+

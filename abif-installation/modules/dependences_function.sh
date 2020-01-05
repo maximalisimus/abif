@@ -35,6 +35,7 @@ dependences_result()
             echo -e -n "\e[1;32mThe «dialog» package is installed...\e[0m"
             outin_success
             echo ""
+            sudo pacman -S dialog --noconfirm
             ;;
         n|N) echo -e -n "\e[1;31mРабота скрипта будет прекращена!\e[0m"
             outin_failure
@@ -48,6 +49,7 @@ dependences_result()
           echo -e -n "\e[1;32mThe default action is executed...\e[0m" 
           outin_success
           echo ""
+          sudo pacman -S dialog --noconfirm
             ;;
     esac
 }
