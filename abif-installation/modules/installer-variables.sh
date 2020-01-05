@@ -140,3 +140,8 @@ _dlg_rt_rt_bp="$filesdir/dlg-rt-rt.bp"
 _dlgrc_mp_etc="${MOUNTPOINT}/etc/dialogrc"
 _dlgrc_mp_rt="${MOUNTPOINT}/root/.dialogrc"
 _dlgrc_mp_hm_dr="${MOUNTPOINT}/home/"
+
+# User and Groups
+_us_gr_users=(adm ftp games http log rfkill sys systemd-journal users uucp wheel)
+_us_gr_system=(dbus kmem locate lp mail nobody proc smmsp tty utmp)
+_us_gr_presystemd=(audio disk floppy input kvm optical scanner storage video)

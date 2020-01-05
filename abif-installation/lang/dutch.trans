@@ -478,3 +478,50 @@ _scrn_strp_ttl="Screenfetch-welkom instellen"
 _scrn_strp_bd="\nScreenfetch-begroeting toevoegen bij opstarten?\n"
 _menu_ch_usr_ttl="Gebruikerskeuze"
 _menu_ch_usr_bd="\nSelecteer de gebruikers voor wie u de SHELL wilt wijzigen\n"
+
+#
+# User groups
+_ug_select_ttl="De keuze van de groepen van de gebruiker"
+ug_select_bd="\nSelecteer de groepen om een nieuwe gebruiker toe te voegen aan\n"
+#
+# User Groups for user
+#
+_ugd_adm="Beheerder"
+_ugd_ftp="Toegang tot FTP-bestanden"
+_ugd_games="Toegang tot spelprogramma ' s"
+_ugd_http="Toegang tot HTTP-bestanden"
+_ugd_log="Toegang tot logbestanden, syslog-ng"
+_ugd_rfkill="Stroombeheer voor draadloze apparaten"
+_ugd_sys="Beheer van CUPS-printers"
+_ugd_systemd_journal="Toegang tot systeemd-logs"
+_ugd_users="Standaard gebruikersgroep"
+_ugd_uucp="Toegang tot RS-232-apparaten"
+_ugd_wheel="Toediening via sudo en su"
+#
+# User Groups for system
+#
+_ugd_dbus="Gebruikt in dbus"
+_ugd_kmem="-"
+_ugd_locate="-"
+_ugd_lp="Toegang tot parallelle poortvoorzieningen"
+_ugd_mail="-"
+_ugd_nobody="Geen bevoorrechte groep"
+_ugd_proc="Toegang tot informatie over de processen"
+_ugd_smmsp="sendmail-groep"
+_ugd_tty="-"
+_ugd_utmp="-"
+#
+# User Groups for Pre-Systemd
+#
+_ugd_audio="Directe toegang tot audio-apparatuur"
+_ugd_disk="Toegang tot blokapparaten"
+_ugd_floppy="Toegang tot diskettes"
+_ugd_input="Toegang tot Invoerapparaten"
+_ugd_kvm="Toegang tot virtuele KVM-machines"
+_ugd_optical="Toegang tot CD, DVD, ISO"
+_ugd_scanner="Toegang tot scanners"
+_ugd_storage="Toegang tot verwijderbare schijven"
+_ugd_video="Toegang tot video-opname-apparaten"
+#
+#
+
