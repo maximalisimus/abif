@@ -478,3 +478,50 @@ _scrn_strp_ttl="Configuration screenfetch d'accueil"
 _scrn_strp_bd="\nAjouter un message d'accueil screenfetch au démarrage?\n"
 _menu_ch_usr_ttl="Sélection des utilisateurs"
 _menu_ch_usr_bd="\nVeuillez sélectionner les utilisateurs pour lesquels vous souhaitez modifier SHELL\n"
+
+#
+# User groups
+_ug_select_ttl="Sélection de groupes d'utilisateurs"
+ug_select_bd="\nVeuillez sélectionner les groupes auxquels vous souhaitez ajouter un nouvel utilisateur\n"
+#
+# User Groups for user
+#
+_ugd_adm="Administration"
+_ugd_ftp="Accès aux fichiers FTP"
+_ugd_games="Accès aux programmes de jeu"
+_ugd_http="Accès aux fichiers HTTP"
+_ugd_log="Accès aux fichiers journaux, syslog-ng"
+_ugd_rfkill="Gestion de l'alimentation des périphériques sans fil"
+_ugd_sys="Administration des imprimantes CUPS"
+_ugd_systemd_journal="Accès aux journaux systemd"
+_ugd_users="Groupe d'utilisateurs standard"
+_ugd_uucp="Accès aux périphériques RS-232"
+_ugd_wheel="Administration via sudo et su"
+#
+# User Groups for system
+#
+_ugd_dbus="Utilisé à l'intérieur dbus"
+_ugd_kmem="-"
+_ugd_locate="-"
+_ugd_lp="Accès aux périphériques de port parallèle"
+_ugd_mail="-"
+_ugd_nobody="Groupe non privilégié"
+_ugd_proc="Accès aux informations sur les processus"
+_ugd_smmsp="sendmail groupe"
+_ugd_tty="-"
+_ugd_utmp="-"
+#
+# User Groups for Pre-Systemd
+#
+_ugd_audio="Accès direct à l'équipement audio"
+_ugd_disk="Accès aux périphériques blockchain"
+_ugd_floppy="Accès aux disquettes"
+_ugd_input="Accès aux périphériques d'entrée"
+_ugd_kvm="Accès aux machines virtuelles KVM"
+_ugd_optical="Accès aux CD, DVD, ISO"
+_ugd_scanner="Accès aux scanners"
+_ugd_storage="Accès aux disques amovibles"
+_ugd_video="Accès aux périphériques de capture vidéo"
+#
+#
+

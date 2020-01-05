@@ -370,7 +370,7 @@ create_new_user() {
         dialog --backtitle "$VERSION - $SYSTEM ($ARCHI)" --title " $_NUsrTitle " --inputbox "$_NUsrErrBody" 0 0 "" 2>${ANSWER} || config_base_menu
         USER=$(cat ${ANSWER})
     done
-        
+    usgr_to_sel    
     # Enter password. This step will only be reached where the loop has been skipped or broken.
     dialog --backtitle "$VERSION - $SYSTEM ($ARCHI)" --title " $_ConfUsrNew " --clear --insecure --passwordbox "$_PassNUsrBody $USER\n\n" 0 0 2> ${ANSWER} || config_base_menu
     PASSWD=$(cat ${ANSWER}) 
@@ -413,7 +413,12 @@ create_new_user() {
        check_for_error
     else
        # If the live account has already been changed, create a new user account
-       arch_chroot "useradd ${USER} -m -g users -G wheel,storage,power,network,video,audio,lp,games,optical,scanner,floppy,log,rfkill,ftp,http,sys,input,disk -s /bin/bash" 2>/tmp/.errlog   
+       # arch_chroot "useradd ${USER} -m -g users -G wheel,storage,power,network,video,audio,lp,games,optical,scanner,floppy,log,rfkill,ftp,http,sys,input,disk -s /bin/bash" 2>/tmp/.errlog
+       _ugch=$(cat ${ANSWER})
+       _user_group_ch=$(echo "${_ugch[*]}" | sed 's/ /,/g')
+       unset _ugch
+       arch_chroot "useradd ${USER} -m -g users -G wheel,power,users -s /bin/bash" 2>>/tmp/.errlog
+       arch_chroot "usermod -aG ${_user_group_ch[*]} ${USER}" 2>>/tmp/.errlog
        arch_chroot "passwd ${USER}" < /tmp/.passwd >/dev/null 2>>/tmp/.errlog  
      
        # Set up basic configuration files and ownership for new account
