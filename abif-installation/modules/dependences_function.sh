@@ -53,3 +53,19 @@ dependences_result()
             ;;
     esac
 }
+question_dialog_run()
+{
+	if [[ "${_how_shell[*]}" != "fish" ]]; then
+		pacman -Qs dialog 1>/dev/null 2>/dev/null
+		if [[ $? != "0" ]]; then
+			script_dependences_question
+			dependences_result
+		fi
+	else
+		pacman -Qs dialog 1>/dev/null 2>/dev/null
+		if [[ "$STATUS" != "0" ]]; then
+			script_dependences_question
+			dependences_result
+		fi
+	fi
+}

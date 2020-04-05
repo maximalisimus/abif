@@ -70,6 +70,7 @@ FONT=""                                             # Set new font if necessary
 FILE=""                                             # Which file is to be opened?
 
 # SHELL
+_how_shell=$(echo "$SHELL" | rev | cut -d '/' -f1 | rev | tr '[:upper:]' '[:lower:]')
 _once_conf_fscr=0                   # once config to windows fonts and screenfetch startup console
 _usr_list=""                        # list of user to home folder
 _usr_lst_menu=""                    # dialog menu list of user to home folder
@@ -145,3 +146,18 @@ _dlgrc_mp_hm_dr="${MOUNTPOINT}/home/"
 _us_gr_users=(adm ftp games http log rfkill sys systemd-journal users uucp wheel)
 _us_gr_system=(dbus kmem locate lp mail nobody proc smmsp tty utmp)
 _us_gr_presystemd=(audio disk floppy input kvm optical scanner storage video)
+
+# /dialogrc-conf.sh						# Color dialog configuration
+# /installer-variables.sh				# list of variables
+# /dependences_function.sh				# Dependences for script
+# /core-functions.sh					# language, checks
+# /configuration-functions.sh			# Keyboard, locale, time zone, FSTAB, mkinitcpio, user controls
+# /system-partitioning.sh				# managing partitions, installing the boot
+# /luks.sh								# Encryption
+# /lvm.sh								# LVM control
+# /installation-functions.sh			# system installation functions
+# /swappiness-config.sh					# SWAPPINESS
+# /devices-config.sh					# tune2fs
+# /shell_installer.sh					# SHELL installer functions
+# /main-interfaces.sh					# main menu interface
+
