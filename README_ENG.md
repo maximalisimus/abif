@@ -1,15 +1,7 @@
-###########################################
-#                                         #
-#   abif-master script instalation        #
-#   offline to Dialog mode on ArchLinux   #
-#                                         #
-###########################################
+#   abif-master script instalation
+#   offline to Dialog mode on ArchLinux
  
 Creation date: 13.09.2019
-
-Editor used: Notepad++
-    end of line: unix
-    encoding: UTF-8
     
 The starting point of the project: Github: https://github.com/midfingr/archmid-iso.git/airootfs/abif-master/
 
