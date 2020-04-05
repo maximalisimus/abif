@@ -24,16 +24,6 @@ There are 2 important conditions to observe:
 1) run as superuser
 2) have your Live CD/DVD/USB distribution: xorg, LightDM and any DE, for example xfce4
 
-Instead of LighDM, you can use any other one added to your Live distribution.
-
-To do this, make edits to the file "abif-installation/modules/installation-functions.sh" in the following lines:
-
- Display Manager
-arch_chroot "systemctl enable lightdm -f" 2>>/tmp/.errlog
-check_for_error
-
-Instead of "lightdm" respectively your display Manager. 
-
 This script can be run from anywhere. 
 Enough to make one of the files - ispolnjaemyj and run it directly in console.
 
