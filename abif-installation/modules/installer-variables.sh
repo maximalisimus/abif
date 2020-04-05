@@ -10,7 +10,7 @@
 # ISO Specific Variables
 ISO_HOST="maximalisimus"                            # ISO Host Name
 ISO_USER="liveuser"                                # Live user account
-VERSION="MAXIMALISIMUS Installation Framework 2.6"     # Installer Name / Version
+VERSION="MAXIMALISIMUS Installation Framework 2.7"     # Installer Name / Version
 TRANS_SRC="/abif-master"                            # Dir where translation files are stored
 
 # Create a temporary file to store menu selections
