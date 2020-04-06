@@ -45,15 +45,11 @@ install: create icon shortcut
 	mkdir -p $(POSTFIX)$(PREFIX)/$(TARGET)-master/ ;\
 	cp -a $(tmpdir)/$(SOURCES)/* $(POSTFIX)$(PREFIX)/$(TARGET)-master/ ;\
 	chmod ugo+x $(POSTFIX)$(PREFIX)/$(TARGET)-master/$(TARGET) ;\
-	mkdir -p $(POSTFIX)usr/bin/ ;\
-	patch "$(POSTFIX)$(PREFIX)/$(TARGET)-master/$(TARGET)" -i "usrbin.patch" -o "$(POSTFIX)usr/bin/$(TARGET)-master"
-	chmod ugo+x $(POSTFIX)usr/bin/$(TARGET)-master
 
 uninstall: clean
 	rm -rf $(POSTFIX)$(PREFIX)/$(TARGET)-master/ ;\
 	find "$(POSTFIX)$(PREFIX)/icons/" -type f -iname "$(TARGET)-master.png" -exec rm -rf {} \;
 	find "$(POSTFIX)$(PREFIX)/applications/" -type f -iname "$(TARGET)-master.desktop" -exec rm -rf {} \;
-	find "$(POSTFIX)usr/bin/" -type f -iname "$(TARGET)-master" -exec rm -rf {} \;
 
 icon:
 	rm -rf $(POSTFIX)/$(PREFIX)/icons ;\
