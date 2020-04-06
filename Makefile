@@ -53,7 +53,7 @@ uninstall: clean
 	rm -rf $(POSTFIX)$(PREFIX)/$(TARGET)-master/ ;\
 	find "$(POSTFIX)$(PREFIX)/icons/" -type f -iname "$(TARGET)-master.png" -exec rm -rf {} \;
 	find "$(POSTFIX)$(PREFIX)/applications/" -type f -iname "$(TARGET)-master.desktop" -exec rm -rf {} \;
-	find "$(POSTFIX)/usr/bin/" -type f -iname "$(TARGET)-master" -exec rm -rf {} \;
+	find "$(POSTFIX)usr/bin/" -type f -iname "$(TARGET)-master" -exec rm -rf {} \;
 
 icon:
 	rm -rf $(POSTFIX)/$(PREFIX)/icons ;\
