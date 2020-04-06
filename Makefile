@@ -47,6 +47,7 @@ install: create icon shortcut
 	chmod ugo+x $(POSTFIX)$(PREFIX)/$(TARGET)-master/$(TARGET) ;\
 	mkdir -p $(POSTFIX)/usr/bin/ ;\
 	patch "$(POSTFIX)$(PREFIX)/$(TARGET)-master/$(TARGET)" -i "usrbin.patch" -o "$(POSTFIX)/usr/bin/$(TARGET)-master"
+	chmod ugo+x $(POSTFIX)/usr/bin/$(TARGET)-master
 
 uninstall: clean
 	rm -rf $(POSTFIX)$(PREFIX)/$(TARGET)-master/ ;\
