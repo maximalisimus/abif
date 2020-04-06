@@ -48,10 +48,8 @@ install: create icon shortcut
 
 uninstall: clean
 	rm -rf $(POSTFIX)$(PREFIX)/$(TARGET)-master/ ;\
-	rm -rf $(POSTFIX)$(PREFIX)/icons/ ;\
-	rm -rf $(POSTFIX)$(PREFIX)/applications/ ;\
-	rm -rf $(POSTFIX)$(PREFIX)/ ;\
-	rm -rf $(POSTFIX) ;\
+	find "$(POSTFIX)$(PREFIX)/icons/" -type f -iname "$(TARGET)-master.png" -exec rm -rf {} \;
+	find "$(POSTFIX)$(PREFIX)/applications/" -type f -iname "$(TARGET)-master.desktop" -exec rm -rf {} \;
 
 icon:
 	rm -rf $(POSTFIX)/$(PREFIX)/icons ;\
