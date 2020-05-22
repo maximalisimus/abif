@@ -5,7 +5,7 @@ Creation date: 13.09.2019
     
 The starting point of the project: Github: https://github.com/midfingr/archmid-iso.git/airootfs/abif-master/
 
-This script is designed for full-featured installation of the project "ArchISO" - 
+This script is designed for installation of the project "ArchISO" - 
 Live CD/DVD/USB system ArchLinux in pseudographic mode, using the dialog package.
 
 The script can be used with any distribution ArchLunux supporting: xorg, DM and DE. 

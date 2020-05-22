@@ -8,7 +8,7 @@ E-Mail: maximalis171091@yandex.ru
     
 Начальная точка проекта: Github: https://github.com/midfingr/archmid-iso.git/airootfs/abif-master/
 
-Данный скрипт предназначен для полнофункциональной установки проекта "ArchISO" - 
+Данный скрипт предназначен для установки проекта "ArchISO" - 
 Live CD/DVD/USB системы ArchLinux в псевдографическом режиме, используя пакет dialog.
 
 Скрипт можно использовать с любым дистрибутивом ArchLunux, поддерживающим: xorg, DM и DE. 
