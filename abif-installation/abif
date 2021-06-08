@@ -13,7 +13,6 @@ ABSOLUT_FILENAME=$(readlink -e "$0")
 filesdir=$(dirname "$ABSOLUT_FILENAME")
 
 set -o pipefail ;
-shopt -s lastpipe ;
 
 for i in $filesdir/modules/*.sh
 do
