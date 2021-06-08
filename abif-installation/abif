@@ -14,7 +14,7 @@ filesdir=$(dirname "$ABSOLUT_FILENAME")
 
 set -o pipefail ;
 
-for i in $filesdir/modules/*.sh
+for i in "$filesdir"/modules/*.sh
 do
 	source "$i"
 done
