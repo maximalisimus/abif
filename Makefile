@@ -1,87 +1,59 @@
+DESTDIR=./
+SETUPDIR=$(DESTDIR)usr/share
 TARGET=abif
-PREFIX=usr/share
-POSTFIX=./
+LABEL_NAME=$(TARGET)-master
+LABEL_DESKTOP=$(LABEL_NAME).desktop
+GITURL="https://github.com/maximalisimus/$(LABEL_NAME).git"
 SOURCES=$(TARGET)-installation
-tmpdir=./$(TARGET)-master
-GITNAME=$(TARGET)-master
-
+ICONDIR=icons
+IMAGEDIR=image
+ICON_NAME=$(TARGET)-icon
+ICONFL=$(ICONDIR)/$(ICON_NAME).png
+#
 DESCENG="This script is to install the system ArchISO Live CD/DVD/USB using the Dialog package."
 DESCRU="Данный скрипт предназначен для установки системы ArchISO Live CD/DVD/USB с помощью диалогового пакета."
-
-gturl="https://github.com/maximalisimus/$(GITNAME).git"
-ICONNAME=$(tmpdir)/icons/$(TARGET)-icon.png
-THUMBNAIL=$(POSTFIX)$(PREFIX)/icons/hicolor
-ICONINSTALL=$(POSTFIX)$(PREFIX)/icons/hicolor/128x128/apps/$(TARGET)-master.png
-
-.PHONY: all clean build create install uninstall icon shortcut
-
-all: build install clean
-
-clean:
-	rm -rf $(tmpdir)
-
-build:
-	if [ -d $(tmpdir) ]; then \
-		echo "$(tmpdir) Folder it's OK" ;\
-	else \
-		mkdir -p $(tmpdir) ;\
-		git clone $(gturl) $(tmpdir) ;\
-	fi \
-
-create:
-	if [ -d $(SOURCES) ]; then \
-		mkdir -p $(tmpdir)/$(SOURCES) ;\
-		mkdir -p $(tmpdir)/icons ;\
-		cp -a $(SOURCES)/* $(tmpdir)/$(SOURCES)/ ;\
-		cp ./icons/$(TARGET)-icon.png $(tmpdir)/icons/$(TARGET)-icon.png ;\
-		rm -rf ./$(SOURCES) ;\
-		rm -rf ./icons ;\
-	else \
-		echo "$(SOURCES) Folder does not and OK" ;\
-	fi \
-
-install: create icon shortcut
-	rm -rf $(POSTFIX)$(PREFIX)/$(TARGET)-master/ ;\
-	mkdir -p $(POSTFIX)$(PREFIX)/$(TARGET)-master/ ;\
-	cp -a $(tmpdir)/$(SOURCES)/* $(POSTFIX)$(PREFIX)/$(TARGET)-master/ ;\
-	chmod ugo+x $(POSTFIX)$(PREFIX)/$(TARGET)-master/$(TARGET) ;\
-
-uninstall: clean
-	rm -rf $(POSTFIX)$(PREFIX)/$(TARGET)-master/ ;\
-	find "$(POSTFIX)$(PREFIX)/icons/" -type f -iname "$(TARGET)-master.png" -exec rm -rf {} \;
-	find "$(POSTFIX)$(PREFIX)/applications/" -type f -iname "$(TARGET)-master.desktop" -exec rm -rf {} \;
-
+#
+sizes:=16 24 32 64 96 128
+icon_sizes:=$(foreach sz,$(sizes),$(sz)x$(sz))
+#
+.PHONY: all icon desktop install uninstall clean
+all: icon desktop
+	echo ""
+	echo "Please enter to: make install"
+	echo ""
 icon:
-	rm -rf $(POSTFIX)/$(PREFIX)/icons ;\
-	mkdir -p $(THUMBNAIL)/16x16/apps/;\
-	mkdir -p $(THUMBNAIL)/24x24/apps/;\
-	mkdir -p $(THUMBNAIL)/32x32/apps/;\
-	mkdir -p $(THUMBNAIL)/64x64/apps/;\
-	mkdir -p $(THUMBNAIL)/96x96/apps/;\
-	mkdir -p $(THUMBNAIL)/128x128/apps/;\
-	cp $(ICONNAME) $(ICONINSTALL) ;\
-	convert $(ICONINSTALL) -resize 96x96 $(THUMBNAIL)/96x96/apps/$(TARGET)-master.png;\
-	convert $(ICONINSTALL) -resize 64x64 $(THUMBNAIL)/64x64/apps/$(TARGET)-master.png;\
-	convert $(ICONINSTALL) -resize 32x32 $(THUMBNAIL)/32x32/apps/$(TARGET)-master.png;\
-	convert $(ICONINSTALL) -resize 24x24 $(THUMBNAIL)/24x24/apps/$(TARGET)-master.png;\
-	convert $(ICONINSTALL) -resize 16x16 $(THUMBNAIL)/16x16/apps/$(TARGET)-master.png;\
-
-shortcut:
-	mkdir -p $(POSTFIX)$(PREFIX)/applications/ ;\
-	rm -rf $(POSTFIX)$(PREFIX)/applications/$(TARGET)-master.desktop ;\
-	touch $(POSTFIX)$(PREFIX)/applications/$(TARGET)-master.desktop ;\
-	echo "[Desktop Entry]" >> $(POSTFIX)$(PREFIX)/applications/$(TARGET)-master.desktop ;\
-	echo "Exec=sudo /$(PREFIX)/$(TARGET)-master/$(TARGET)" >> $(POSTFIX)$(PREFIX)/applications/$(TARGET)-master.desktop ;\
-	echo "Type=Application" >> $(POSTFIX)$(PREFIX)/applications/$(TARGET)-master.desktop ;\
-	echo "Name=$(TARGET)-master" >> $(POSTFIX)$(PREFIX)/applications/$(TARGET)-master.desktop ;\
-	echo "Name[en]=$(TARGET)-master" >> $(POSTFIX)$(PREFIX)/applications/$(TARGET)-master.desktop ;\
-	echo "Name[ru]=$(TARGET)-master" >> $(POSTFIX)$(PREFIX)/applications/$(TARGET)-master.desktop ;\
-	echo "Terminal=true" >> $(POSTFIX)$(PREFIX)/applications/$(TARGET)-master.desktop ;\
-	echo "Icon=$(TARGET)-master" >> $(POSTFIX)$(PREFIX)/applications/$(TARGET)-master.desktop ;\
-	echo "Categories=GNOME;GTK;Utility;" >> $(POSTFIX)$(PREFIX)/applications/$(TARGET)-master.desktop ;\
-	echo "X-GNOME-UsesNotifications=true" >> $(POSTFIX)$(PREFIX)/applications/$(TARGET)-master.desktop ;\
-	echo "Comment=$(DESCENG)" >> $(POSTFIX)$(PREFIX)/applications/$(TARGET)-master.desktop ;\
-	echo "Comment[en]=$(DESCENG)" >> $(POSTFIX)$(PREFIX)/applications/$(TARGET)-master.desktop ;\
-	echo "Comment[ru]=$(DESCRU)" >> $(POSTFIX)$(PREFIX)/applications/$(TARGET)-master.desktop ;\
-	chmod ugo+x $(POSTFIX)$(PREFIX)/applications/$(TARGET)-master.desktop ;\
-
+	for i in $(icon_sizes) ; do \
+		mkdir -p $(ICONDIR)/hicolor/$$i/apps/ ; \
+		convert $(ICONFL) -resize $$i $(ICONDIR)/hicolor/$$i/apps/$(ICON_NAME).png ; \
+	done
+desktop:
+	touch $(LABEL_DESKTOP)
+	echo "[Desktop Entry]" > $(LABEL_DESKTOP)
+	echo "Exec=sudo $(SETUPDIR)/$(LABEL_NAME)/$(TARGET)" >> $(LABEL_DESKTOP)
+	echo "Type=Application" >> $(LABEL_DESKTOP)
+	echo "Name=$(LABEL_NAME)" >> $(LABEL_DESKTOP)
+	echo "Name[en]=$(LABEL_NAME)" >> $(LABEL_DESKTOP)
+	echo "Name[ru]=$(LABEL_NAME)" >> $(LABEL_DESKTOP)
+	echo "Terminal=true" >> $(LABEL_DESKTOP)
+	echo "Icon=$(ICON_NAME)" >> $(LABEL_DESKTOP)
+	echo "Categories=GNOME;GTK;Utility;" >> $(LABEL_DESKTOP)
+	echo "X-GNOME-UsesNotifications=true" >> $(LABEL_DESKTOP)
+	echo "Comment=$(DESCENG)" >> $(LABEL_DESKTOP)
+	echo "Comment[en]=$(DESCENG)" >> $(LABEL_DESKTOP)
+	echo "Comment[ru]=$(DESCRU)" >> $(LABEL_DESKTOP)
+	find ./ -type f -iname "$(LABEL_DESKTOP)" -exec chmod ugo+x {} \;
+install:
+	rm -rf $(SETUPDIR)/$(LABEL_NAME)
+	mkdir -p $(SETUPDIR)/$(LABEL_NAME) $(SETUPDIR)/icons/hicolor/ $(SETUPDIR)/applications/
+	cp -a $(SOURCES)/* $(SETUPDIR)/$(LABEL_NAME)/
+	find ./ -type f -iname "$(LABEL_DESKTOP)" -exec cp -f {} $(SETUPDIR)/applications/ \;
+	cp -a $(ICONDIR)/hicolor/* $(SETUPDIR)/icons/hicolor/
+	find "$(SETUPDIR)/applications/" -type f -iname "$(LABEL_DESKTOP)" -exec chmod +x {} \;
+	find "$(SETUPDIR)/$(LABEL_NAME)/" -type f -iname "$(TARGET)" -exec chmod +x {} \;
+uninstall: clean
+	find $(SETUPDIR)/applications/ -type f -iname "$(LABEL_DESKTOP)" -exec rm -rf {} \;
+	rm -rf $(SETUPDIR)/$(LABEL_NAME)/
+	find $(SETUPDIR)/icons/hicolor/ -type f -iname "$(ICON_NAME).png" -exec rm -rf {} \;
+clean:
+	rm -rf $(ICONDIR)/hicolor/
+	find ./ -type f -iname "$(LABEL_DESKTOP)" -exec rm -rf {} \;

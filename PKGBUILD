@@ -1,11 +1,11 @@
 pkgname=abif-master
 _pkgrun="abif"
 pkgver=2.7
-pkgrel=1
+pkgrel=2
 arch=('any')
 url="https://github.com/maximalisimus/$pkgname/"
 license=('GPL')
-depends=(dialog parted gparted)
+depends=(dialog parted gparted rsync)
 makedepends=(git imagemagick)
 replaces=($pkgname)
 
@@ -17,8 +17,8 @@ md5sums=('SKIP'
 
 prepare() {
 	cd ${srcdir}/$pkgname
-	make DESTDIR=/ desktop
-	make icon
+	mkdir -p ./post/
+	make DESTDIR=./post/ all
 	make DESTDIR=./post/ install
 }
 
