@@ -22,7 +22,10 @@ abif-master - Bash скрипт для установки системы ArchISO
 Данный скрипт предназначен для установки сборки системы в виде "ArchISO" - 
 Live CD/DVD/USB ArchLinux в псевдографическом режиме, используя пакет dialog.
 
-Скрипт можно использовать с любым дистрибутивом ArchLunux, поддерживающим: xorg, DM и DE. 
+Скрипт можно использовать с любым дистрибутивом ArchLunux, который **должен поддерживать**: 
+* XORG 
+* Рабочее окружение - Desktop environment 
+* Менеджер дисплея - Display Manager.
 
 Данный мастер поддерживает UEFI режим установки при запуске системы ArchLinux в режиме UEFI.
 
@@ -44,7 +47,10 @@ Live CD/DVD/USB ArchLinux в псевдографическом режиме, и
 This script is intended for installing the system assembly in the form of "ArchISO" -
 Live CD/DVD/USB ArchLinux in pseudographic mode, using the dialog package.
 
-The script can be used with any Archlinux distribution that supports: xorg, DM and DE.
+The script can be used with any Archlinux distribution that **must support**:
+* XORG
+* Working environment-Desktop environment
+* Display Manager - Display Manager.
 
 This wizard supports UEFI installation mode when starting the ArchLinux system in UEFI mode.
 
