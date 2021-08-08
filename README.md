@@ -14,7 +14,8 @@ abif-master - Bash скрипт для установки системы ArchISO
 2. [Information](#Information)
 4. [Использование](#Использование)
 5. [Uses](#Uses)
-6. [About](#About)
+6. [Обо Мне](#aboutrus)
+7. [About](#abouten)
 
 [:arrow_up:Информация](#Информация)
 
@@ -166,9 +167,7 @@ This installation wizard will not change your Live system with the specified lin
 
 **We wish you good luck!**
 
-[:arrow_up:About](#About)
-
-### Russian about
+[:arrow_up:Обо Мне](#aboutrus)
 
 Автор данной разработки **Shadow**: [maximalisimus](https://github.com/maximalisimus).
 
@@ -178,7 +177,7 @@ This installation wizard will not change your Live system with the specified lin
 
 Начальная точка проекта: [midfingr/archmid-iso](https://github.com/midfingr/archmid-iso.git/airootfs/abif-master/).
 
-### English about
+[:arrow_up:About](#abouten)
 
 The author of this development **Shadow**: [maximalisimus](https://github.com/maximalisimus).
 
