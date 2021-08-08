@@ -168,11 +168,21 @@ This installation wizard will not change your Live system with the specified lin
 
 [:arrow_up:About](#About)
 
+### Russian
+
 Автор данной разработки **Shadow**: [maximalisimus](https://github.com/maximalisimus).
 
 Имя автора: **maximalisimus**: [E-Mail](mailto:maximalis171091@yandex.ru).
 
-Дата создания: 13.09.2019
-    
+Дата создания: **13.09.2019**
+
 Начальная точка проекта: [midfingr/archmid-iso](https://github.com/midfingr/archmid-iso.git/airootfs/abif-master/).
+
+### English
+
+The author of this development **Shadow**: [maximalisimus](https://github.com/maximalisimus).
+
+Author's name: **maximalisimus**: [E-Mail](mailto:maximalis171091@yandex.ru).
+
+Date of creation: **13.09.2019**
 
