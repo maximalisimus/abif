@@ -185,3 +185,5 @@ Author's name: **maximalisimus**: [E-Mail](mailto:maximalis171091@yandex.ru).
 
 Date of creation: **13.09.2019**
 
+Starting point of the project: [midfingr/archmid-iso](https://github.com/midfingr/archmid-iso.git/airootfs/abif-master/).
+
