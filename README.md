@@ -168,7 +168,7 @@ This installation wizard will not change your Live system with the specified lin
 
 [:arrow_up:About](#About)
 
-### Russian
+### Russian about
 
 Автор данной разработки **Shadow**: [maximalisimus](https://github.com/maximalisimus).
 
@@ -178,7 +178,7 @@ This installation wizard will not change your Live system with the specified lin
 
 Начальная точка проекта: [midfingr/archmid-iso](https://github.com/midfingr/archmid-iso.git/airootfs/abif-master/).
 
-### English
+### English about
 
 The author of this development **Shadow**: [maximalisimus](https://github.com/maximalisimus).
 
