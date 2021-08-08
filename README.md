@@ -1,4 +1,13 @@
-#   abif-master script instalation
+# abif-master
+
+****************************
+
+abif-master - Bash script for installing the ArchISO system, which is running as a Live CD/DVD/USB, on a computer.
+
+abif-master - Bash скрипт для установки системы ArchISO, которая запущена как Live CD/DVD/USB, на компьютер.
+
+<img src="https://raw.githubusercontent.com/maximalisimus/abif-master/main/image/abif-image.jpg"  height="400">
+
 #   offline to Dialog mode on ArchLinux
  
 Имя автора: maximalisimus
