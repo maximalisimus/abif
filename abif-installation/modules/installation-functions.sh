@@ -135,9 +135,9 @@ install_root(){
   rmdir ${MOUNTPOINT}/bypass 2>>/tmp/.errlog
   rmdir ${MOUNTPOINT}/src 2>>/tmp/.errlog
   rmdir ${MOUNTPOINT}/source 2>>/tmp/.errlog
-  rm -f ${MOUNTPOINT}/etc/sudoers.d/g_wheel 2>>/tmp/.errlog
-  rm -f ${MOUNTPOINT}/var/lib/NetworkManager/NetworkManager.state 2>>/tmp/.errlog
-  rm -f ${MOUNTPOINT}/update-abif 2>>/tmp/.errlog
+  rm -rf ${MOUNTPOINT}/etc/sudoers.d/g_wheel 2>>/tmp/.errlog
+  rm -rf ${MOUNTPOINT}/var/lib/NetworkManager/NetworkManager.state 2>>/tmp/.errlog
+  rm -rf ${MOUNTPOINT}/update-abif 2>>/tmp/.errlog
   sed -i 's/.*pam_wheel\.so/#&/' ${MOUNTPOINT}/etc/pam.d/su 2>>/tmp/.errlog
  
   # clean out archiso files from install
