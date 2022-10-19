@@ -52,7 +52,6 @@ shell_friendly_setup()
 			[[ -e ${MOUNTPOINT}/home/$i/.zshrc ]] || echo "alias ls='ls --color=auto'" >> ${MOUNTPOINT}/home/$i/.zshrc
         done
 		echo "alias ls='ls --color=auto'" >> ${MOUNTPOINT}/root/.zshrc
-        _usr_lst_menu="${_usr_lst_menu} root - off"
     fi
     # Checklist dialog user
     dialog --backtitle "$VERSION - $SYSTEM ($ARCHI)" --title "$_menu_ch_usr_ttl" --checklist "$_menu_ch_usr_bd" 0 0 16 ${_usr_lst_menu} 2>${ANSWER}
