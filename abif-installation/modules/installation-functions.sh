@@ -12,35 +12,19 @@ function detecting_service()
 }
 nm_manager_instllng()
 {
-	for j in ${_network_manager[*]}; do
-		if [[ $(detecting_service "$j") != "0" ]] && [[ $j != "${_network_manager[0]}" ]]; then
-			arch-chroot $MOUNTPOINT /bin/bash -c "systemctl enable $j.service" 2>>/tmp/.errlog
-			wait
-			check_for_error
-			wait
-			echo "systemctl enable $j.service"
-			if [[ $j == "${_network_manager[2]}" ]]; then
-				arch-chroot $MOUNTPOINT /bin/bash -c "systemctl enable $j-dispatcher.service" 2>>/tmp/.errlog
-				wait
-				check_for_error
-				wait
-				echo "systemctl enable $j-dispatcher.service"
-			fi
-			_nm_dt_instll=1
-			break
-		else
-			let _dt_nm_count+=1
-		fi
-	done
-	if [[ $_nm_dt_instll == "0" ]]; then
-		if [ "$_dt_nm_count" -ge "4" ]; then
-			arch-chroot $MOUNTPOINT /bin/bash -c "systemctl enable ${_network_manager[0]}.service" 2>>/tmp/.errlog
-			wait
-			check_for_error
-			wait
-			echo "systemctl enable ${_network_manager[0]}.service"
-		fi
+	arch-chroot $MOUNTPOINT /bin/bash -c "systemctl enable ${network_manager}.service" 2>>/tmp/.errlog
+	wait
+	check_for_error
+	wait
+	echo "systemctl enable ${network_manager}.service"
+	if [[ ${network_manager} == "${_network_manager[2]}" ]]; then
+		arch-chroot $MOUNTPOINT /bin/bash -c "systemctl enable ${network_manager}-dispatcher.service" 2>>/tmp/.errlog
+		wait
+		check_for_error
+		wait
+		echo "systemctl enable ${network_manager}-dispatcher.service"
 	fi
+	_nm_dt_instll=1
 	sleep 2
 }
 slm_instllng()
@@ -59,39 +43,48 @@ slm_instllng()
 }
 dm_manager_instllng()
 {
-	for j in ${_user_dm[*]}; do
-		if [[ $(detecting_service "$j") != "0" ]]; then
-			arch-chroot $MOUNTPOINT /bin/bash -c "systemctl enable $j.service" >/dev/null 2>>/tmp/.errlog
-			wait
-			check_for_error
-			wait
-			echo "systemctl enable $j.service"
-			case $j in
-				"${_user_dm[1]}") arch-chroot $MOUNTPOINT /bin/bash -c "systemctl enable $j -f" 2>>/tmp/.errlog
-								   wait
-								   check_for_error
-								   wait
-								   echo "systemctl enable $j -f"
-								;;
-				"${_user_dm[2]}") arch-chroot $MOUNTPOINT /bin/bash -c "$j --example-config > /etc/${_user_dm[2]}.conf" 2>>/tmp/.errlog
-								   wait
-								   check_for_error
-								   wait
-								   echo "$j --example-config > /etc/${_user_dm[2]}.conf"
-								;;
-				# "${_user_dm[3]}") # arch-chroot $MOUNTPOINT /bin/bash -c "$j --example-config > /etc/${_user_dm[3]}.conf" 2>>/tmp/.errlog
-								# wait
-								# check_for_error
-								# wait
-								# echo "$j --example-config > /etc/${_user_dm[3]}.conf"
-								# ;;
-				# "${_user_dm[4]}") slm_instllng
-								# wait
-								# ;;
-			esac
-			break
-		fi
-	done
+	clear
+	wait
+	case $user_dm in
+		"${_user_dm[0]}") arch-chroot $MOUNTPOINT /bin/bash -c "systemctl enable ${user_dm}.service" 2>>/tmp/.errlog
+						   wait
+						   check_for_error
+						   wait
+						   echo "systemctl enable ${user_dm}.service"
+						;;
+		"${_user_dm[1]}") arch-chroot $MOUNTPOINT /bin/bash -c "systemctl enable ${user_dm}.service" 2>>/tmp/.errlog
+						   wait
+						   check_for_error
+						   wait
+						   echo "systemctl enable ${user_dm}.service"
+						;;
+		"${_user_dm[2]}") arch-chroot $MOUNTPOINT /bin/bash -c "systemctl enable ${user_dm}.service" 2>>/tmp/.errlog
+						   wait
+						   check_for_error
+						   wait
+						   echo "systemctl enable ${user_dm}.service"
+						;;
+		 "${_user_dm[3]}") arch-chroot $MOUNTPOINT /bin/bash -c "$user_dm --example-config > /etc/${_user_dm[3]}.conf" 2>>/tmp/.errlog
+						wait
+						check_for_error
+						wait
+						echo "$user_dm --example-config > /etc/${_user_dm[3]}.conf"
+						wait
+						arch-chroot $MOUNTPOINT /bin/bash -c "systemctl enable ${user_dm}.service" 2>>/tmp/.errlog
+						wait
+						check_for_error
+						wait
+						echo "systemctl enable ${user_dm}.service"
+						;;
+		 "${_user_dm[4]}") slm_instllng
+						wait
+						arch-chroot $MOUNTPOINT /bin/bash -c "systemctl enable ${user_dm}.service" 2>>/tmp/.errlog
+						wait
+						check_for_error
+						wait
+						echo "systemctl enable ${user_dm}.service"
+						;;
+	esac
 	sleep 2
 }
 

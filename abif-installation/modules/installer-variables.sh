@@ -121,7 +121,9 @@ _mem_2=""
 
 # Network-Manager and Desktop-Manager for autoselect
 _network_manager=(dhcpcd connman NetworkManager wicd)
+network_manager="NetworkManager"
 _user_dm=(lxdm lightdm sddm gdm slim)
+user_dm="lightdm"
 _dt_nm_count=0
 _nm_dt_instll=0
 
