@@ -9,6 +9,7 @@ ISO_HOST="maximalisimus"                            # ISO Host Name
 ISO_USER="liveuser"                                # Live user account
 VERSION="MAXIMALISIMUS Installation Framework 2.7"     # Installer Name / Version
 TRANS_SRC="/abif-master"                            # Dir where translation files are stored
+_type_setup=1 										# Distribution installation type
 
 # Create a temporary file to store menu selections
 ANSWER="/tmp/.abif"

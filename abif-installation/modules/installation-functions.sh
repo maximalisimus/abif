@@ -192,8 +192,10 @@ install_root(){
   # Network-Manager installing
   nm_manager_instllng
   
-  # Desktop-Manager installing
-  dm_manager_instllng
+  if [[ ${_type_setup} == 1 ]]; then
+    # Desktop-Manager installing
+    dm_manager_instllng
+  fi
   
   check_for_error
 }

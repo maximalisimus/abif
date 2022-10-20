@@ -29,6 +29,26 @@ for i in "$filesdir"/modules/*.sh; do source "$i"; done ;
 ######################################################################
 
 setcolor
+while [ -n "$1" ]; do
+	case "$1" in
+		-cli) _type_setup=0
+			;;
+		-gui) _type_setup=1
+			;;
+		-[h?] | --help) _help
+						wait
+						exit 0
+						;;
+		*) $SETCOLOR_ERROR
+			echo -e -n "\nUnkonwn parameter\n"
+			$SETCOLOR_NORMAL
+			_help
+			wait
+			exit 1
+			;;
+	esac
+	shift
+done
 us_dlgrc_conf
 id_system
 select_language
