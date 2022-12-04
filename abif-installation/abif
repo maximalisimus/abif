@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 #
 # Arch Base Installation Framework (version 2.2 - 23-Mar-2016)
 #
@@ -15,12 +15,6 @@ filesdir=$(dirname "$ABSOLUT_FILENAME")
 set -o pipefail ;
 
 for i in "$filesdir"/modules/*.sh; do source "$i"; done ;
-#_src_fls=$(find "$filesdir/modules" -maxdepth 1 -type f -iname "*.sh")
-#for i in ${_src_fls[*]}; do
-#    source "$i"
-#done
-#unset _src_fls
-
 
 ######################################################################
 ##                                                                  ##

@@ -1,19 +1,19 @@
 pkgname=abif-master
 _pkgrun="abif"
-pkgver=2.7
-pkgrel=2
+pkgver=2.8
+pkgrel=1
 arch=('any')
-url="https://github.com/maximalisimus/$pkgname/"
+url="https://github.com/maximalisimus/${pkgname}.git"
 license=('GPL')
-depends=(dialog parted gparted rsync)
+depends=(arch-install-scripts dialog ncurses lib32-ncurses pacman-contrib parted util-linux gptfdisk python wget curl sed gawk grep)
 makedepends=(git imagemagick)
 replaces=($pkgname)
 
-source=("$pkgname::git+https://github.com/maximalisimus/$pkgname.git"
+source=("$pkgname::git+https://github.com/maximalisimus/${pkgname}.git"
 	)
-	
-md5sums=('SKIP'
-	)
+
+sha256sums=('SKIP'
+			)
 
 prepare() {
 	cd ${srcdir}/$pkgname
